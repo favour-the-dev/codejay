@@ -6,34 +6,36 @@ import { IoIosClose } from "react-icons/io";
 import { FaShieldAlt } from "react-icons/fa";
 import Link from "next/link";
 function ContactModal() {
+  const { isContactModalOpen, setIsContactModalOpen } = useContext(
+    AppContext
+  ) as any;
   const [mounted, setMounted] = useState(false);
-  const [type, setType] = useState<string | null>(null);
-  const [route, setRoute] = useState<string | null>(null);
+  const [route, setRoute] = useState("");
+  const [type, setType] = useState("");
   const [message, setMessage] = useState(
     "Hello, I'm interested in trading with you. Can you please provide me with more information?"
   );
 
-  const { isContactModalOpen, setIsContactModalOpen } = useContext(
-    AppContext
-  ) as any;
-
   useEffect(() => {
     setMounted(true);
+
     if (typeof window !== "undefined") {
       const hash = window.location.hash;
       const [r, queryString] = hash.split("?");
       const params = new URLSearchParams(queryString);
       const t = params.get("type");
 
-      setRoute(r);
-      setType(t);
+      setRoute(r || "");
+      setType(t || "");
+
+      console.log("route", r);
+      console.log("type", t);
+      console.log("message", message);
     }
-    console.log("route", route);
-    console.log("type", type);
-    console.log("message", message);
   }, []);
 
   if (!mounted) return null;
+
   return (
     <>
       {isContactModalOpen && (
