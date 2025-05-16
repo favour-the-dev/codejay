@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import ThemeSwitch from "./ThemeSwitch";
 import { IoIosClose } from "react-icons/io";
 import { IoIosMenu } from "react-icons/io";
+import { ContactModalState } from "../types/types";
 function Navbar() {
   const pathname = usePathname();
   const { setIsContactModalOpen, isMobileNavOpen, setIsMobileNavOpen } =
@@ -24,7 +25,7 @@ function Navbar() {
               height={35}
               className="rounded-full object-cover"
             />
-            <span className="text-base md:text-lg text-forestgreen dark:text-background font-semibold">
+            <span className="text-sm sm:text-base md:text-lg text-forestgreen dark:text-background font-semibold">
               Code<span className="text-secondary">Jay</span>Xchange
             </span>
           </div>
@@ -85,10 +86,12 @@ function Navbar() {
             </div>
             <div className="flex items-center gap-3 ml-auto">
               <ThemeSwitch />
-              <Link
-                href={"/?type=starter"}
+              <button
                 onClick={() => {
-                  setIsContactModalOpen(true);
+                  setIsContactModalOpen((prev: ContactModalState) => ({
+                    ...prev,
+                    state: true,
+                  }));
                 }}
                 className="relative z-[60] lg:static lg:z-auto text-background bg-forestgreen hover:opacity-90 duration-200 ease-in-out dark:bg-forestgreen-dark px-4 py-2 rounded-lg flex items-center gap-2"
               >
@@ -99,7 +102,7 @@ function Navbar() {
                   width={20}
                   height={20}
                 />
-              </Link>
+              </button>
             </div>
 
             {/* mobile nav */}
@@ -139,10 +142,12 @@ function Navbar() {
       >
         <div className="flex items-center gap-3">
           <ThemeSwitch />
-          <Link
-            href={"/?type=starter"}
+          <button
             onClick={() => {
-              setIsContactModalOpen(true);
+              setIsContactModalOpen((prev: ContactModalState) => ({
+                ...prev,
+                state: true,
+              }));
               setIsMobileNavOpen(false);
             }}
             className="relative z-[60] lg:static lg:z-auto text-background bg-forestgreen hover:opacity-90 duration-200 ease-in-out dark:bg-forestgreen-dark px-4 py-2 rounded-lg flex items-center gap-2"
@@ -154,7 +159,7 @@ function Navbar() {
               width={20}
               height={20}
             />
-          </Link>
+          </button>
           <div className="relative z-[60] text-3xl text-forestgreen-dark dark:text-secondary">
             <IoIosClose
               onClick={() => setIsMobileNavOpen(false)}

@@ -9,6 +9,7 @@
   --forestgreen-dark: #1f4835;
   --darkShade: #222222;
   --darkLighter: #272829;
+  --background-gray: #eeeeee;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -23,6 +24,7 @@
   --color-forestgreen-dark: var(--forestgreen-dark);
   --color-darkShade: var(--darkShade);
   --color-darkLighter: var(--darkLighter);
+  --color-background-gray: var(--background-gray);
   --breakpoint-sm: 400px;
 }
 
@@ -40,4 +42,8 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
 }

@@ -5,7 +5,7 @@ import { HiMoon, HiSun } from "react-icons/hi2";
 import { motion, AnimatePresence } from "framer-motion";
 
 function ThemeSwitch() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -17,10 +17,10 @@ function ThemeSwitch() {
   return (
     <button
       className="relative z-[60] lg:static lg:z-auto cursor-pointer text-foreground dark:text-background transition-colors duration-300"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
       <AnimatePresence mode="wait" initial={false}>
-        {theme === "dark" ? (
+        {resolvedTheme === "dark" ? (
           <motion.div
             key="sun"
             initial={{ rotate: -90, opacity: 0 }}

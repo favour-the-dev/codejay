@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { FaTwitter } from "react-icons/fa";
@@ -5,6 +6,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaShieldAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
 function Footer() {
   const currentYear = new Date().getFullYear();
   return (
@@ -12,7 +14,13 @@ function Footer() {
       <footer className="w-full px-3 py-10 bg-background dark:bg-primary flex flex-col gap-5">
         <div className="max-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* logo */}
-          <div className="flex flex-col gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-3"
+          >
             <div className="flex items-center gap-1">
               <Image
                 alt="logo"
@@ -59,10 +67,16 @@ function Footer() {
                 <FaWhatsapp />
               </Link>
             </div>
-          </div>
+          </motion.div>
 
           {/* QuickLinks */}
-          <div className="flex flex-col gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-3"
+          >
             <h4 className="text-foreground dark:text-gray-400 font-semibold">
               Quick Links
             </h4>
@@ -92,10 +106,16 @@ function Footer() {
                 Testimonials
               </Link>
             </div>
-          </div>
+          </motion.div>
 
           {/* support */}
-          <div className="flex flex-col gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-3"
+          >
             <h4 className="text-foreground dark:text-gray-400 font-semibold">
               Support
             </h4>
@@ -125,10 +145,16 @@ function Footer() {
                 Privacy Policy
               </Link>
             </div>
-          </div>
+          </motion.div>
 
           {/* news letter */}
-          <div className="flex flex-col gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-3"
+          >
             <h4 className="text-foreground dark:text-gray-400 font-semibold">
               Newsletter
             </h4>
@@ -150,10 +176,16 @@ function Footer() {
               Your data is always safe with us. We never share your information
               with third parties.
             </span>
-          </div>
+          </motion.div>
         </div>
         <hr className="text-gray-200 dark:text-gray-400/20" />
-        <div className="w-full flex items-center flex-col md:flex-row md:justify-between gap-2 md:gap-0 p-3">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="w-full flex items-center flex-col md:flex-row md:justify-between gap-2 md:gap-0 p-3"
+        >
           <span className="text-sm text-gray-500 dark:text-gray-400">
             &copy; {currentYear} CodeJayXchange. All rights reserved
           </span>
@@ -177,7 +209,7 @@ function Footer() {
               secured by SSL
             </span>
           </div>
-        </div>
+        </motion.div>
       </footer>
     </>
   );

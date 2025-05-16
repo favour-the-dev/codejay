@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { AppContext } from "@/app/context/context";
 import { useContext } from "react";
 import { FaChartLine } from "react-icons/fa6";
+import { ContactModalState } from "@/app/types/types";
+import HeroCard from "../herocard";
 function Hero() {
   const { setIsContactModalOpen, setIsMobileNavOpen } = useContext(
     AppContext
@@ -23,27 +25,29 @@ function Hero() {
           />
         </div>
         {/* hero text */}
-        <div className="max-container text-background relative z-10 flex flex-col justify-center md:justify-start h-full">
+        <div className="max-container text-background relative z-10 flex flex-col md:flex-row items-center justify-center md:justify-between">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
             className="flex flex-col gap-5 md:max-w-2/3 lg:max-w-[50%] py-10"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl text-center md:text-start font-bold text-background">
+            <h2 className="text-3xl md:text-4xl  text-center md:text-start font-bold text-background">
               Trade with Code<span className="text-secondary">Jay</span> Your
               Trusted Partner for Crypto-to-Naira Exchange
             </h2>
-            <p className="text-center md:text-start text-base lg:text-lg text-gray-300 dark:text-gray-400  ">
+            <p className="text-center md:text-start text-base lg:text-lg text-gray-300">
               Experience seamless cryptocurrency trading with Nigeria's most
               reliable exchange platform. Get competitive rates, instant
               transactions, and professional support available 24/7.
             </p>
             <div className="flex flex-col md:flex-row items-center gap-3 mt-2">
-              <Link
-                href={"/?type=starter"}
+              <button
                 onClick={() => {
-                  setIsContactModalOpen(true);
+                  setIsContactModalOpen((prev: ContactModalState) => ({
+                    ...prev,
+                    state: true,
+                  }));
                   setIsMobileNavOpen(false);
                 }}
                 className="w-full md:w-fit text-background bg-forestgreen hover:opacity-90 duration-200 ease-in-out 
@@ -56,7 +60,7 @@ function Hero() {
                   width={20}
                   height={20}
                 />
-              </Link>
+              </button>
               <Link
                 href={"#rates"}
                 className="w-full md:w-fit text-background bg-darkShade hover:opacity-90 duration-200 ease-in-out 
@@ -69,7 +73,7 @@ function Hero() {
 
             <div className="flex flex-col sm:flex-row items-center sm:justify-between">
               <div className="flex flex-col items-center md:items-start">
-                <h4 className="text-secondary font-bold text-xl md:text-3xl">
+                <h4 className="text-secondary font-bold text-2xl md:text-3xl">
                   ₦100M+
                 </h4>
                 <span className="text-sm text-gray-200 dark:text-gray-400">
@@ -77,7 +81,7 @@ function Hero() {
                 </span>
               </div>
               <div className="flex flex-col items-center md:items-start">
-                <h4 className="text-secondary font-bold text-xl md:text-3xl">
+                <h4 className="text-secondary font-bold text-2xl md:text-3xl">
                   2K+
                 </h4>
                 <span className="text-sm text-gray-200 dark:text-gray-400">
@@ -85,7 +89,7 @@ function Hero() {
                 </span>
               </div>
               <div className="flex flex-col items-center md:items-start">
-                <h4 className="text-secondary font-bold text-xl md:text-3xl">
+                <h4 className="text-secondary font-bold text-2xl md:text-3xl">
                   100%
                 </h4>
                 <span className="text-sm text-gray-200 dark:text-gray-400">
@@ -93,6 +97,14 @@ function Hero() {
                 </span>
               </div>
             </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:max-w-2/3 lg:max-w-[50%] py-4"
+          >
+            <HeroCard customStyle="w-[300px] sm:w-[350px] lg:w-[400px] h-[200px] lg:h-[300px]" />
           </motion.div>
         </div>
       </div>
