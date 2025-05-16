@@ -27,20 +27,21 @@ function Hero() {
         {/* hero text */}
         <div className="max-container text-background relative z-10 flex flex-col md:flex-row items-center justify-center md:justify-between">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-            className="flex flex-col gap-5 md:max-w-2/3 lg:max-w-[50%] py-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col gap-5 md:max-w-2/3 lg:max-w-[50%] py-5"
           >
-            <h2 className="text-3xl md:text-4xl  text-center md:text-start font-bold text-background">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl text-center md:text-start font-bold text-background">
               Trade with Code<span className="text-secondary">Jay</span> Your
-              Trusted Partner for Crypto-to-Naira Exchange
+              Trusted Partner for Everything Exchange
             </h2>
             <p className="text-center md:text-start text-base lg:text-lg text-gray-300">
               Experience seamless cryptocurrency trading with Nigeria's most
               reliable exchange platform. Get competitive rates, instant
               transactions, and professional support available 24/7.
             </p>
+            {/* Crypto-to-Naira */}
             <div className="flex flex-col md:flex-row items-center gap-3 mt-2">
               <button
                 onClick={() => {
@@ -99,9 +100,9 @@ function Hero() {
             </div>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className="md:max-w-2/3 lg:max-w-[50%] py-4"
           >
             <HeroCard customStyle="w-[300px] sm:w-[350px] lg:w-[400px] h-[200px] lg:h-[300px]" />

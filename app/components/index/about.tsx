@@ -50,15 +50,22 @@ function About() {
           </div>
           {/* about jay */}
           {activeTab === "about" && (
-            <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-0">
+            <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-0 overflow-hidden">
+              <h2 className="font-Inter font-bold text-2xl md:text-3xl md:hidden text-center">
+                Who is Code
+                <span className="text-forestgreen dark:text-secondary">
+                  Jay
+                </span>
+                ?
+              </h2>
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
                 className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-5 order-2 md:order-1"
               >
-                <h2 className="font-Inter font-bold text-2xl md:text-3xl">
+                <h2 className="font-Inter font-bold text-2xl md:text-3xl hidden md:block">
                   Who is Code
                   <span className="text-forestgreen dark:text-secondary">
                     Jay
@@ -93,7 +100,7 @@ function About() {
                     setIsMobileNavOpen(false);
                   }}
                   className="w-full md:w-fit text-background bg-forestgreen hover:opacity-90 duration-200 ease-in-out 
-                              dark:bg-forestgreen-dark px-4 py-3 flex items-center justify-center gap-2 rounded-lg0"
+                              dark:bg-forestgreen-dark px-4 py-3 flex items-center justify-center gap-2 rounded-lg"
                 >
                   <span className="text-sm md:text-base">Contact Us</span>{" "}
                   <Image
@@ -106,8 +113,8 @@ function About() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
                 className="w-full md:w-1/2 flex items-center justify-center order-1 md:order-2"
@@ -128,7 +135,7 @@ function About() {
           {/* services */}
           {activeTab === "services" && (
             <div className="w-full flex flex-col md:items-center md:justify-between gap-5 overflow-hidden">
-              <h2 className="font-Inter font-bold text-2xl md:text-3xl">
+              <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
                 What Services Do We{" "}
                 <span className="text-forestgreen dark:text-secondary">
                   Offer
