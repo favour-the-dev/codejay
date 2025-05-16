@@ -13,3 +13,13 @@ export interface AppContextTypes {
   isMobileNavOpen: boolean;
   setIsMobileNavOpen: (isOpen: boolean) => void;
 }
+
+export interface ServiceCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  className?: string;
+  hoverEffect?: boolean;
+  type?: string;
+  animationDelay?: number
+}

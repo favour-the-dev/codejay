@@ -7,17 +7,42 @@ import { FaShieldAlt } from "react-icons/fa";
 import Link from "next/link";
 import { ContactModalState } from "../types/types";
 function ContactModal() {
+  const typeMessages = [
+    {
+      type: "starter",
+      message:
+        "Hello, I'm interested in trading with you. Can you please provide me with more information?",
+    },
+    {
+      type: "exchange",
+      message:
+        "Hello, i want to exchange my fiat or crpto. can you provide me with more information.",
+    },
+    {
+      type: "memecoin/giftcard",
+      message:
+        "Hello, I want to buy/sell memecoins/giftcards, can you provide me with more info",
+    },
+    {
+      type: "mentorship",
+      message:
+        "Hello, I want to be a part of your degen trading mentorship programme. can you provide me with more information",
+    },
+  ];
   const { isContactModalOpen, setIsContactModalOpen } = useContext(
     AppContext
   ) as any;
   const [mounted, setMounted] = useState(false);
-  const [message, setMessage] = useState(
-    "Hello, I'm interested in trading with you. Can you please provide me with more information?"
-  );
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    if (isContactModalOpen.type) {
+      typeMessages.forEach((tm) => {
+        tm.type === isContactModalOpen.type && setMessage(tm.message);
+      });
+    }
+  }, [isContactModalOpen.type]);
 
   if (!mounted) return null;
 
@@ -60,9 +85,7 @@ function ContactModal() {
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder={
-                  isContactModalOpen.type === "starter" ? message : "tbc"
-                }
+                placeholder={message}
                 className="h-[60px] w-full text-sm text-gray-700 dark:text-gray-300 resize-none placeholder:text-sm flex items-center justify-center px-2 focus:outline-none"
               />
               <span className="text-gray-600 dark:text-gray-400 text-[11px]">

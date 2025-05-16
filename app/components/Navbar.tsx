@@ -88,10 +88,10 @@ function Navbar() {
               <ThemeSwitch />
               <button
                 onClick={() => {
-                  setIsContactModalOpen((prev: ContactModalState) => ({
-                    ...prev,
+                  setIsContactModalOpen({
+                    type: "starter",
                     state: true,
-                  }));
+                  } as ContactModalState);
                 }}
                 className="relative z-[60] lg:static lg:z-auto text-background bg-forestgreen hover:opacity-90 duration-200 ease-in-out dark:bg-forestgreen-dark px-4 py-2 rounded-lg flex items-center gap-2"
               >
@@ -144,10 +144,10 @@ function Navbar() {
           <ThemeSwitch />
           <button
             onClick={() => {
-              setIsContactModalOpen((prev: ContactModalState) => ({
-                ...prev,
+              setIsContactModalOpen({
+                type: "starter",
                 state: true,
-              }));
+              } as ContactModalState);
               setIsMobileNavOpen(false);
             }}
             className="relative z-[60] lg:static lg:z-auto text-background bg-forestgreen hover:opacity-90 duration-200 ease-in-out dark:bg-forestgreen-dark px-4 py-2 rounded-lg flex items-center gap-2"

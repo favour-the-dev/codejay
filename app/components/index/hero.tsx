@@ -44,10 +44,10 @@ function Hero() {
             <div className="flex flex-col md:flex-row items-center gap-3 mt-2">
               <button
                 onClick={() => {
-                  setIsContactModalOpen((prev: ContactModalState) => ({
-                    ...prev,
+                  setIsContactModalOpen({
+                    type: "starter",
                     state: true,
-                  }));
+                  } as ContactModalState);
                   setIsMobileNavOpen(false);
                 }}
                 className="w-full md:w-fit text-background bg-forestgreen hover:opacity-90 duration-200 ease-in-out 

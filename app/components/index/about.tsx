@@ -6,6 +6,12 @@ import { ContactModalState } from "@/app/types/types";
 import { HiBadgeCheck } from "react-icons/hi";
 import { SlBadge } from "react-icons/sl";
 import { motion } from "framer-motion";
+import { IoMdSwap } from "react-icons/io";
+import { FaHandshake } from "react-icons/fa";
+import { IoBarChartSharp } from "react-icons/io5";
+import ServiceCard from "../serviceCard";
+import ImageSlider from "../imageSlider";
+
 function About() {
   const { setIsContactModalOpen, setIsMobileNavOpen } = useContext(
     AppContext
@@ -18,7 +24,7 @@ function About() {
     <>
       <section
         id="about"
-        className="relative w-full h-full py-5 bg-background-gray dark:bg-foreground"
+        className="relative w-full h-full py-5 bg-background-gray dark:bg-foreground overflow-x-hidden"
       >
         <div className="max-container flex flex-col gap-5">
           {/* tabs */}
@@ -112,7 +118,7 @@ function About() {
                     src={"/images/joshua.jpeg"}
                     width={400}
                     height={400}
-                    className="w-[300px] md:w-[400px] h-[250px] md:h-[300px] object-cover rounded-xl"
+                    className="w-[400px] h-[250px] md:h-[300px] object-cover rounded-xl"
                   />
                 </div>
               </motion.div>
@@ -121,11 +127,47 @@ function About() {
 
           {/* services */}
           {activeTab === "services" && (
-            <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-0">
-              <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-5 order-2 md:order-1">
+            <div className="w-full flex flex-col md:items-center md:justify-between gap-5 overflow-hidden">
+              <h2 className="font-Inter font-bold text-2xl md:text-3xl">
+                What Services Do We{" "}
+                <span className="text-forestgreen dark:text-secondary">
+                  Offer
+                </span>
+                ?
+              </h2>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="w-full flex flex-col items-center md:items-start gap-5 order-1"
+              >
+                <ImageSlider />
+              </motion.div>
+              <div className="w-full flex flex-col md:flex-row items-center gap-5 order-2">
                 {/*  */}
+                <ServiceCard
+                  icon={<IoMdSwap />}
+                  title="Fiat & Crypto Exchange"
+                  description="Experience seamless transactions with our platform, designed for both crypto and fiat exchanges. Enjoy fast, secure, and user-friendly services tailored to your needs."
+                  type="exchange"
+                  animationDelay={0}
+                />
+                <ServiceCard
+                  icon={<FaHandshake />}
+                  title="Buy & Sell Meme Coins/Giftcards"
+                  description="Unlock the potential of meme coins and gift cards with our platform. Buy, sell, and trade effortlessly while enjoying top-notch security and support."
+                  type="memecoin/giftcard"
+                  animationDelay={0.2}
+                />
+                <ServiceCard
+                  icon={<IoBarChartSharp />}
+                  title="Degen & Forex trading Mentorship/Signals"
+                  description="Join our mentorship program for expert guidance in degen and forex trading. Receive real-time signals and insights to enhance your trading skills and strategies."
+                  type="mentorship"
+                  animationDelay={0.4}
+                />
               </div>
-              <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-5 order-1 md:order-2"></div>
             </div>
           )}
         </div>
