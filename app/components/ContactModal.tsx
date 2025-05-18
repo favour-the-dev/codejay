@@ -7,6 +7,9 @@ import { FaShieldAlt } from "react-icons/fa";
 import Link from "next/link";
 import { ContactModalState } from "../types/types";
 function ContactModal() {
+  const { isContactModalOpen, setIsContactModalOpen } = useContext(
+    AppContext
+  ) as any;
   const typeMessages = [
     {
       type: "starter",
@@ -14,9 +17,18 @@ function ContactModal() {
         "Hello, I'm interested in trading with you. Can you please provide me with more information?",
     },
     {
+      type: "trade",
+      message: `Hello, I want to trade ${isContactModalOpen.coin} with you. Can you please provide me with more information?`,
+    },
+    {
       type: "exchange",
       message:
         "Hello, i want to exchange my fiat or crpto. can you provide me with more information.",
+    },
+    {
+      type: "foreign",
+      message:
+        "Hello, i want to exchange my Naira to foreign currencies. can you provide me with more information.",
     },
     {
       type: "memecoin/giftcard",
@@ -29,9 +41,6 @@ function ContactModal() {
         "Hello, I want to be a part of your degen trading mentorship programme. can you provide me with more information",
     },
   ];
-  const { isContactModalOpen, setIsContactModalOpen } = useContext(
-    AppContext
-  ) as any;
   const [mounted, setMounted] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -39,10 +48,10 @@ function ContactModal() {
     setMounted(true);
     if (isContactModalOpen.type) {
       typeMessages.forEach((tm) => {
-        tm.type === isContactModalOpen.type && setMessage(tm.message);
+        tm.type === isContactModalOpen.type && setMessage(tm.message ?? "");
       });
     }
-  }, [isContactModalOpen.type]);
+  }, [isContactModalOpen.type, isContactModalOpen.coin]);
 
   if (!mounted) return null;
 

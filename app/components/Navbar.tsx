@@ -137,7 +137,7 @@ function Navbar() {
         }}
         className={`${
           isMobileNavOpen ? "translate-x-0" : "translate-x-full"
-        } fixed z-[59] top-0 right-0 pt-[60px] p-5 flex flex-col gap-5 w-[50%] h-screen bg-background dark:bg-primary 
+        } fixed z-[59] top-0 right-0 pt-[60px] p-5 flex flex-col gap-5 w-[60%] h-screen bg-background dark:bg-primary 
         border-l border-gray-200 dark:border-none shadow-lg transition-transform duration-300 ease-in-out`}
       >
         <div className="flex items-center gap-3">
@@ -160,7 +160,7 @@ function Navbar() {
               height={20}
             />
           </button>
-          <div className="relative z-[60] text-3xl text-forestgreen-dark dark:text-secondary">
+          <div className="relative z-[60] text-5xl text-forestgreen-dark dark:text-secondary">
             <IoIosClose
               onClick={() => setIsMobileNavOpen(false)}
               className="cursor-pointer"
@@ -173,7 +173,7 @@ function Navbar() {
             pathname === "/"
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
         >
           Home
         </Link>
@@ -183,7 +183,7 @@ function Navbar() {
             pathname.includes("#about")
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl  dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
         >
           About
         </Link>
@@ -193,7 +193,7 @@ function Navbar() {
             pathname.includes("#rates")
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl  dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
         >
           Rates
         </Link>
@@ -203,7 +203,7 @@ function Navbar() {
             pathname.includes("#testimonials")
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl  dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
         >
           Testimonials
         </Link>
@@ -213,7 +213,7 @@ function Navbar() {
             pathname.includes("#transactions")
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl  dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
         >
           Transactions
         </Link>

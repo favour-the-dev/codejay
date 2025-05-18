@@ -1,23 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { ImageSliderprops } from "../types/types";
 
-const images = [
-  {
-    src: "/images/general.jpeg",
-    label: "Fiat & Crypto Exchange",
-  },
-  {
-    src: "/images/coin.jpeg",
-    label: "Degen Trading",
-  },
-  {
-    src: "/images/giftcard.jpeg",
-    label: "Gift Cards",
-  },
-];
-
-function ImageSlider() {
+function ImageSlider({ images, isHidden }: ImageSliderprops) {
   const [activeIndex, setActiveIndex] = useState(0);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -49,14 +35,18 @@ function ImageSlider() {
       {/* Slider */}
       <div className="relative h-80 md:h-64">
         {/* Mobile: Stacked card deck */}
-        <div className="flex lg:hidden items-center justify-center h-full relative">
+        <div
+          className={`${
+            isHidden ? "flex" : "flex lg:hidden"
+          } items-center justify-center h-full relative`}
+        >
           {images.map((image, idx) => {
             const offset = idx - activeIndex;
             const isActive = idx === activeIndex;
 
             return (
               <div
-                key={image.src}
+                key={idx}
                 className={`
                   absolute transition-all duration-500 ease-in-out cursor-pointer
                   ${isActive ? "z-20 scale-100" : "z-10 scale-90 opacity-50"}
@@ -86,13 +76,16 @@ function ImageSlider() {
         </div>
 
         {/* Desktop: Classic grid layout */}
-        <div className="hidden lg:grid grid-cols-3 gap-6 transition-all duration-500">
+        <div
+          className={`${
+            isHidden ? "hidden" : "hidden lg:grid"
+          } grid-cols-3 gap-6 transition-all duration-500`}
+        >
           {images.map((image, idx) => {
             const isActive = idx === activeIndex;
-
             return (
               <div
-                key={image.src}
+                key={idx}
                 onClick={() => handleNavigate(idx)}
                 className={`
                   relative overflow-hidden rounded-xl cursor-pointer

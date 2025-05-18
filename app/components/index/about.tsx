@@ -20,6 +20,34 @@ function About() {
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
+  const images = [
+    {
+      src: "/images/general.jpeg",
+      label: "Fiat & Crypto Exchange",
+    },
+    {
+      src: "/images/coin.jpeg",
+      label: "Degen Trading",
+    },
+    {
+      src: "/images/giftcard.jpeg",
+      label: "Gift Cards",
+    },
+  ];
+  const ExchangeImages = [
+    {
+      src: "/images/dollar.jpeg",
+      label: "Dollar Exchange",
+    },
+    {
+      src: "/images/euro.jpeg",
+      label: "Euro Exchange",
+    },
+    {
+      src: "/images/pounds.jpeg",
+      label: "Pounds Exchange",
+    },
+  ];
   return (
     <>
       <section
@@ -46,6 +74,15 @@ function About() {
               } px-6 py-2 cursor-pointer duration-200 ease-in-out rounded-3xl`}
             >
               Services
+            </span>
+            <span
+              onClick={() => handleTabClick("exchange")}
+              className={`${
+                activeTab === "exchange" &&
+                "bg-forestgreen text-background dark:bg-secondary"
+              } px-6 py-2 cursor-pointer duration-200 ease-in-out rounded-3xl`}
+            >
+              Exchange
             </span>
           </div>
           {/* about jay */}
@@ -149,13 +186,13 @@ function About() {
                 viewport={{ once: true }}
                 className="w-full flex flex-col items-center md:items-start gap-5 order-1"
               >
-                <ImageSlider />
+                <ImageSlider images={images} />
               </motion.div>
               <div className="w-full flex flex-col md:flex-row items-center gap-5 order-2">
                 {/*  */}
                 <ServiceCard
                   icon={<IoMdSwap />}
-                  title="Fiat & Crypto Exchange"
+                  title="Crypto Exchange"
                   description="Experience seamless transactions with our platform, designed for both crypto and fiat exchanges. Enjoy fast, secure, and user-friendly services tailored to your needs."
                   type="exchange"
                   animationDelay={0}
@@ -174,6 +211,45 @@ function About() {
                   type="mentorship"
                   animationDelay={0.4}
                 />
+              </div>
+            </div>
+          )}
+          {activeTab === "exchange" && (
+            <div className="w-full flex flex-col md:items-center md:justify-between gap-5 overflow-hidden">
+              <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
+                Foreign{" "}
+                <span className="text-forestgreen dark:text-secondary">
+                  Exchange
+                </span>
+              </h2>
+              <div className="w-full flex flex-col md:flex-row items-center md:justify-between gap-5 md:gap-0">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-5 order-2 md:order-1"
+                >
+                  <ServiceCard
+                    icon={<IoMdSwap />}
+                    title="Foreign Exchange"
+                    description=" Exchange your Naira for Dollars, Euros, or Pounds instantly
+                    with Code Jay Exchange. Enjoy fast, secure, and competitive
+                    foreign cash exchange services tailored for your
+                    convenience. Trust. Trade. Thrive."
+                    type="foreign"
+                    animationDelay={0}
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="w-full md:w-1/2 flex flex-col items-center justify-center gap-5 order-1 md:order-2"
+                >
+                  <ImageSlider images={ExchangeImages} isHidden={true} />
+                </motion.div>
               </div>
             </div>
           )}
