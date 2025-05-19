@@ -1,43 +1,21 @@
 "use client";
-import { useState, useEffect } from "react";
-import RatesService from "@/services/Rates";
-import { CryptoCoin } from "@/app/types/types";
+import { useState, useContext } from "react";
 import CryptoCard from "../ratecard";
+import { AppContext } from "@/app/context/context";
+import { CryptoCoin } from "@/app/types/types";
+import { motion } from "framer-motion";
 function Rates() {
-  const TopCoins = ["BTC", "ETH", "XRP", "USDT", "BNB", "SOL", "USDC", "DOGE"];
-  const [topCoins, setTopCoins] = useState<(CryptoCoin | undefined)[]>([]);
   const [activeTab, setActiveTab] = useState("Dollar");
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
-  const [rate, setRate] = useState<string | undefined>("");
-  const handleFetchRates = async () => {
-    try {
-      const data = await RatesService.getRates();
-      const xrate = await RatesService.getExchangeRate();
-      const usdRate = xrate?.conversion_rates.USD;
-      if (!usdRate) return;
-      setRate(usdRate);
-      if (!data) return;
-      const coins: CryptoCoin[] = data.data.coins;
-      if (!coins) return;
-      const mainCoins = TopCoins.map((symbol) =>
-        coins.find((c) => c.symbol === symbol)
-      );
-      if (!mainCoins) return;
-      setTopCoins(mainCoins);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { topCoins, rate } = useContext(AppContext) as any;
+
   function usdToNaira(usdAmount: number): number {
     return parseFloat(
-      (usdAmount * (1 / (rate ? parseFloat(rate) : 1))).toFixed(2)
+      (usdAmount * (rate.usd ? parseFloat(rate.usd) : 1)).toFixed(2)
     );
   }
-  useEffect(() => {
-    handleFetchRates();
-  }, []);
 
   if (topCoins?.length <= 0) {
     return (
@@ -45,10 +23,16 @@ function Rates() {
         id="rates"
         className="w-full h-[250px] bg-background-gray dark:bg-foreground"
       >
-        <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          viewport={{ once: true }}
+          className="font-Inter font-bold text-2xl md:text-3xl text-center"
+        >
           Top Traded{" "}
           <span className="text-forestgreen dark:text-secondary">Coins</span>
-        </h2>
+        </motion.h2>
         {/* Simple spinner */}
         <div className="w-full h-full flex flex-col items-center justify-center gap-3">
           <div className="mx-auto w-12 h-12 border-4 border-gray-200 border-t-green-500 rounded-full animate-spin"></div>
@@ -67,10 +51,25 @@ function Rates() {
         className="relative w-full h-full py-5 bg-background-gray dark:bg-foreground overflow-x-hidden"
       >
         <div className="max-container flex flex-col gap-8">
-          <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
-            Top Traded{" "}
-            <span className="text-forestgreen dark:text-secondary">Coins</span>
-          </h2>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-3"
+          >
+            <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
+              Top Traded{" "}
+              <span className="text-forestgreen dark:text-secondary">
+                Coins
+              </span>
+            </h2>
+            <p className="text-sm md:text-lg mx-auto text-gray-500 dark:text-gray-400 md:max-w-[70%] text-center">
+              Explore our most‑traded coins here; we handle many more. Message
+              us for the complete portfolio, tailored insights, and real‑time
+              opportunities to diversify and grow your crypto holdings.
+            </p>
+          </motion.div>
           <div className="w-fit mx-auto my-4 bg-background dark:bg-forestgreen-dark rounded-3xl flex items-center">
             <span
               onClick={() => handleTabClick("Dollar")}
@@ -92,7 +91,7 @@ function Rates() {
             </span>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-            {topCoins?.map((coin) => {
+            {topCoins?.map((coin: CryptoCoin) => {
               return (
                 <CryptoCard
                   key={coin?.uuid}

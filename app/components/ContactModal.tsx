@@ -26,6 +26,11 @@ function ContactModal() {
         "Hello, i want to exchange my fiat or crpto. can you provide me with more information.",
     },
     {
+      type: "payments",
+      message:
+        "Hello, i want to use yout international payment methods. can you provide me with more information.",
+    },
+    {
       type: "foreign",
       message:
         "Hello, i want to exchange my Naira to foreign currencies. can you provide me with more information.",

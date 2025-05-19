@@ -1,16 +1,63 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AppContext } from "@/app/context/context";
-import { useContext } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { FaChartLine } from "react-icons/fa6";
 import { ContactModalState } from "@/app/types/types";
+import HeroCardSkeleton from "../herocardskeleton";
 import HeroCard from "../herocard";
+import { Persisted } from "@/app/types/types";
+import { CryptoCoin } from "@/app/types/types";
+
 function Hero() {
-  const { setIsContactModalOpen, setIsMobileNavOpen } = useContext(
-    AppContext
-  ) as any;
+  const { setIsContactModalOpen, setIsMobileNavOpen, topCoins, rate } =
+    useContext(AppContext) as any;
+  const [index, setIndex] = useState(0);
+  const [currentCoin, setCurrentCoin] = useState<CryptoCoin | null>(null);
+  const initialRender = useRef(true);
+
+  // Set the initial current coin when topCoins are loaded
+  useEffect(() => {
+    if (topCoins.length > 0 && initialRender.current) {
+      setCurrentCoin(topCoins[0]);
+      initialRender.current = false;
+    }
+  }, [topCoins]);
+
+  // Handle index update with localStorage
+  useEffect(() => {
+    if (topCoins.length === 0) return;
+
+    const DAY_MS = 86_400_000;
+    const nextDay = () => Date.now() + DAY_MS;
+    const STORAGE_KEY = "index";
+
+    let stored: Persisted;
+
+    try {
+      stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    } catch {
+      stored = { i: -1, expires: 0 };
+    }
+
+    let { i = -1, expires = 0 } = stored;
+    i = (i + 1) % topCoins.length;
+
+    if (Date.now() >= expires) {
+      expires = nextDay();
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ i, expires }));
+    setIndex(i);
+
+    // Only update currentCoin when topCoins and index are valid
+    if (topCoins[i]) {
+      setCurrentCoin(topCoins[i]);
+    }
+  }, [topCoins]);
+
   return (
     <>
       <div className="relative w-full h-full py-5">
@@ -105,7 +152,31 @@ function Hero() {
             transition={{ duration: 0.5 }}
             className="md:max-w-2/3 lg:max-w-[50%] py-4"
           >
-            <HeroCard customStyle="w-[300px] sm:w-[350px] lg:w-[400px] h-[200px] lg:h-[300px]" />
+            {topCoins.length === 0 ? (
+              <HeroCardSkeleton className="w-[300px] sm:w-[350px] lg:w-[400px] h-[200px] lg:h-[300px]" />
+            ) : currentCoin ? (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentCoin.symbol}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <HeroCard
+                    name={currentCoin.name}
+                    symbol={currentCoin.symbol}
+                    price={currentCoin.price}
+                    iconUrl={currentCoin.iconUrl}
+                    color={currentCoin.color}
+                    customStyle="w-[300px] sm:w-[350px] lg:w-[400px] h-[200px] lg:h-[300px]"
+                    rate={rate}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            ) : (
+              <HeroCardSkeleton className="w-[300px] sm:w-[350px] lg:w-[400px] h-[200px] lg:h-[300px]" />
+            )}
           </motion.div>
         </div>
       </div>

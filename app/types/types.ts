@@ -1,9 +1,16 @@
 import { Dispatch, SetStateAction } from 'react';
 import { StaticImageData } from 'next/image';
+
 export interface ContactModalState {
   state: boolean;
   type: string;
   coin?: string
+}
+
+export interface rateType{
+  usd: string | undefined
+  eur: string | undefined
+  gbp: string | undefined
 }
 
 export interface AppContextTypes {
@@ -13,6 +20,9 @@ export interface AppContextTypes {
   >;
   isMobileNavOpen: boolean;
   setIsMobileNavOpen: (isOpen: boolean) => void;
+  topCoins: (CryptoCoin | undefined)[];
+  rate: rateType;
+  refreshRates: () => Promise<void>;
 }
 
 export interface ServiceCardProps {
@@ -28,10 +38,14 @@ export interface ServiceCardProps {
 export interface Imagestypes{
   src: string | StaticImageData
   label: string
+  rate?: string | undefined
 }
 export interface ImageSliderprops{
   images: Imagestypes[]
   isHidden?: boolean
+  grid?: string
+  fiat?: boolean
+  rates?: rateType;
 }
 export interface CryptoCoin {
   "24hVolume": string;
@@ -56,13 +70,28 @@ export interface CryptoCoin {
 export interface CoinSummary {
   name: string;
   symbol: string;
-  price: string;             // e.g. "103296.09145692737"
-  change: string;            // percent change, e.g. "-0.31"
-  iconUrl: string;           // URL to SVG/PNG
+  price: string;
+  change: string;
+  iconUrl: string;
   sparkline?: Array<string | null>;
   rank: number;
-  marketCap: string;         // e.g. "2052006812658"
-  volume24h: string;         // e.g. "17694448384"
-  color?: string;            // hex color, default "#f7931A"
+  marketCap: string;
+  volume24h: string;
+  color?: string;
   inNaira?: boolean
 }
+
+export interface HeroCardProps {
+  name: string;
+  symbol: string;
+  price: string;
+  iconUrl: string;
+  color?: string;
+  customStyle?: string;
+  rate: rateType;
+}
+
+export type Persisted = {
+  i: number;
+  expires: number;
+};

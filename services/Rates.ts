@@ -40,7 +40,6 @@ class RatesService{
         try {
           const response = await axios.get(baseUrl);
           const data = response.data
-          console.log(data)
           resolve(data)
           return data;
         } catch (error) {

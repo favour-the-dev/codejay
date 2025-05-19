@@ -3,7 +3,13 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ImageSliderprops } from "../types/types";
 
-function ImageSlider({ images, isHidden }: ImageSliderprops) {
+function ImageSlider({
+  images,
+  isHidden,
+  grid,
+  fiat,
+  rates,
+}: ImageSliderprops) {
   const [activeIndex, setActiveIndex] = useState(0);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -66,8 +72,22 @@ function ImageSlider({ images, isHidden }: ImageSliderprops) {
                     className="object-cover"
                   />
                   {/* Caption */}
-                  <div className="absolute bottom-0 left-0 right-0 p-3 text-sm font-semibold text-white bg-gradient-to-t from-black/70 to-transparent">
-                    {image.label}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 font-semibold text-white bg-gradient-to-t from-black/70 to-transparent">
+                    <span>{image.label}</span>
+                    <span className="block">
+                      Live Rate: ₦{" "}
+                      {fiat &&
+                        image.rate !== "" &&
+                        Number(image.rate).toFixed(2)}{" "}
+                      /{" "}
+                      {image.rate === rates?.usd
+                        ? "$"
+                        : image.rate === rates?.eur
+                        ? "€"
+                        : image.rate === rates?.gbp
+                        ? "£"
+                        : "N"}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -77,9 +97,9 @@ function ImageSlider({ images, isHidden }: ImageSliderprops) {
 
         {/* Desktop: Classic grid layout */}
         <div
-          className={`${
-            isHidden ? "hidden" : "hidden lg:grid"
-          } grid-cols-3 gap-6 transition-all duration-500`}
+          className={`${isHidden ? "hidden" : "hidden lg:grid"} grid-cols-${
+            grid ?? "3"
+          } gap-6 transition-all duration-500`}
         >
           {images.map((image, idx) => {
             const isActive = idx === activeIndex;
@@ -113,6 +133,9 @@ function ImageSlider({ images, isHidden }: ImageSliderprops) {
                   `}
                 >
                   {image.label}
+                  <span className="block">
+                    {fiat && image.rate !== "" && image.rate}
+                  </span>
                 </div>
               </div>
             );

@@ -9,11 +9,14 @@ import { motion } from "framer-motion";
 import { IoMdSwap } from "react-icons/io";
 import { FaHandshake } from "react-icons/fa";
 import { IoBarChartSharp } from "react-icons/io5";
+import { MdPayments } from "react-icons/md";
 import ServiceCard from "../serviceCard";
 import ImageSlider from "../imageSlider";
+import ImageSliderPro from "../imageSliderPro";
+import { MdCurrencyExchange } from "react-icons/md";
 
 function About() {
-  const { setIsContactModalOpen, setIsMobileNavOpen } = useContext(
+  const { setIsContactModalOpen, setIsMobileNavOpen, rate } = useContext(
     AppContext
   ) as any;
   const [activeTab, setActiveTab] = useState("about");
@@ -38,14 +41,63 @@ function About() {
     {
       src: "/images/dollar.jpeg",
       label: "Dollar Exchange",
+      rate: rate.usd,
     },
     {
       src: "/images/euro.jpeg",
       label: "Euro Exchange",
+      rate: rate.eur,
     },
     {
       src: "/images/pounds.jpeg",
       label: "Pounds Exchange",
+      rate: rate.gbp,
+    },
+  ];
+  const paymentOptions = [
+    {
+      src: "/payments/paypalimg.jpeg",
+      label: "PayPal",
+    },
+    {
+      src: "/payments/applepayimg.jpeg",
+      label: "Apple Pay",
+    },
+    {
+      src: "/payments/cashapp.jpeg",
+      label: "Cash App",
+    },
+    {
+      src: "/payments/chase-bank.jpeg",
+      label: "Chase Bank",
+    },
+    {
+      src: "/payments/chime.jpeg",
+      label: "Chime",
+    },
+    {
+      src: "/payments/moneygram.jpeg",
+      label: "Moneygram",
+    },
+    {
+      src: "/payments/varoimg.jpeg",
+      label: "Varo",
+    },
+    {
+      src: "/payments/venmo.jpeg",
+      label: "Venmo",
+    },
+    {
+      src: "/payments/westernunion.jpeg",
+      label: "Western Union",
+    },
+    {
+      src: "/payments/wiretransfer.jpeg",
+      label: "Wire Transfer",
+    },
+    {
+      src: "/payments/zelle.jpeg",
+      label: "Zelle",
     },
   ];
   return (
@@ -76,13 +128,13 @@ function About() {
               Services
             </span>
             <span
-              onClick={() => handleTabClick("exchange")}
+              onClick={() => handleTabClick("international")}
               className={`${
-                activeTab === "exchange" &&
+                activeTab === "international" &&
                 "bg-forestgreen text-background dark:bg-secondary"
               } px-6 py-2 cursor-pointer duration-200 ease-in-out rounded-3xl`}
             >
-              Exchange
+              International
             </span>
           </div>
           {/* about jay */}
@@ -214,42 +266,81 @@ function About() {
               </div>
             </div>
           )}
-          {activeTab === "exchange" && (
+          {activeTab === "international" && (
             <div className="w-full flex flex-col md:items-center md:justify-between gap-5 overflow-hidden">
               <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
-                Foreign{" "}
+                International{" "}
                 <span className="text-forestgreen dark:text-secondary">
-                  Exchange
+                  Services
                 </span>
               </h2>
-              <div className="w-full flex flex-col md:flex-row items-center md:justify-between gap-5 md:gap-0">
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-5 order-2 md:order-1"
-                >
-                  <ServiceCard
-                    icon={<IoMdSwap />}
-                    title="Foreign Exchange"
-                    description=" Exchange your Naira for Dollars, Euros, or Pounds instantly
+              <div className="w-full flex flex-col gap-8">
+                <div className="w-full flex flex-col md:flex-row items-center md:justify-between gap-5 md:gap-0">
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-5 order-2 md:order-1"
+                  >
+                    <ServiceCard
+                      icon={<MdCurrencyExchange />}
+                      title="Foreign Exchange"
+                      description=" Exchange your Naira for Dollars, Euros, or Pounds instantly
                     with Code Jay Exchange. Enjoy fast, secure, and competitive
                     foreign cash exchange services tailored for your
                     convenience. Trust. Trade. Thrive."
-                    type="foreign"
-                    animationDelay={0}
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="w-full md:w-1/2 flex flex-col items-center justify-center gap-5 order-1 md:order-2"
-                >
-                  <ImageSlider images={ExchangeImages} isHidden={true} />
-                </motion.div>
+                      type="foreign"
+                      animationDelay={0}
+                    />
+                    <span className="text-gray-500 dark:text-gray-400 text-sm md:text-base font-semibold">
+                      N/B: Rates seen here could change, contact us for our
+                      current rates.
+                    </span>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="w-full md:w-1/2 flex flex-col items-center justify-center gap-5 order-1 md:order-2"
+                  >
+                    <ImageSlider
+                      images={ExchangeImages}
+                      isHidden={true}
+                      fiat={true}
+                      rates={rate}
+                    />
+                  </motion.div>
+                </div>
+                <div className="w-full flex flex-col md:flex-row items-center gap-5 md:gap-0">
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-5 order-2"
+                  >
+                    <ServiceCard
+                      icon={<MdPayments />}
+                      title="International Payments"
+                      description="Send or receive money your way—PayPal, Apple Pay, Cash App, Chime, Varo, Zelle, full wire services, 
+                      Western Union, MoneyGram, and every foreign “aza.” Fast transfers, sharp FX rates, zero hidden fees, 
+                      real‑time tracking. Pick digital wallet, bank wire, or cash pickup. DM for limits, fees, and timing. 💸"
+                      type="payments"
+                      animationDelay={0}
+                    />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="w-full md:w-1/2 flex flex-col items-center justify-center gap-5 order-1"
+                  >
+                    <ImageSliderPro images={paymentOptions} isHidden={true} />
+                  </motion.div>
+                </div>
               </div>
             </div>
           )}
