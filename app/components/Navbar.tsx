@@ -3,18 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AppContext } from "../context/context";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import ThemeSwitch from "./ThemeSwitch";
 import { IoIosClose } from "react-icons/io";
 import { IoIosMenu } from "react-icons/io";
 import { ContactModalState } from "../types/types";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 function Navbar() {
   const pathname = usePathname();
-  const { setIsContactModalOpen, isMobileNavOpen, setIsMobileNavOpen } =
-    useContext(AppContext) as any;
+  const {
+    setIsContactModalOpen,
+    isMobileNavOpen,
+    setIsMobileNavOpen,
+    handleTabClick,
+  } = useContext(AppContext) as any;
   return (
     <>
-      <nav className="sticky z-[50] top-0 left-0 w-full bg-background/80 border-b dark:border-none border-gray-200 text-foreground dark:bg-primary/80 dark:text-background py-3 backdrop-blur-sm">
+      <nav className="sticky z-[50] top-0 left-0 w-full bg-background/80 border-b dark:border-none border-gray-200 text-foreground dark:bg-primary/80 dark:text-background backdrop-blur-sm">
         <div className="max-container flex items-center justify-between">
           {/* logo */}
           <div className="flex items-center gap-1">
@@ -31,35 +36,62 @@ function Navbar() {
           </div>
 
           {/* */}
-          <div className="w-2/3 flex items-center gap-3">
-            <div className="items-center gap-5 hidden lg:flex">
+          <div className="w-3/4 h-full flex items-center gap-3">
+            <div className="h-full items-center gap-5 hidden lg:flex">
               <Link
                 href={"/"}
                 className={`${
                   pathname === "/"
                     ? "text-forestgreen dark:text-secondary font-semibold"
                     : "text-foreground dark:text-background"
-                } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+                } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
               >
                 Home
               </Link>
-              <Link
-                href={"#about"}
-                className={`${
-                  pathname.includes("#about")
-                    ? "text-forestgreen dark:text-secondary font-semibold"
-                    : "text-foreground dark:text-background"
-                } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
-              >
-                About
-              </Link>
+              <div className="relative group py-3">
+                <Link
+                  onClick={() => handleTabClick("about")}
+                  href={"#about"}
+                  className={`${
+                    pathname.includes("#about")
+                      ? "text-forestgreen dark:text-secondary font-semibold"
+                      : "text-foreground dark:text-background"
+                  } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out flex items-center`}
+                >
+                  About <MdOutlineKeyboardArrowDown className="text-xl" />
+                </Link>
+                <div className="duration-200 ease-in-out scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 absolute bottom-[-125%] left-0 flex flex-col gap-2 border border-gray-500/50 dark:border-non bg-background shadow-lg dark:bg-forestgreen-dark rounded-lg p-3">
+                  <Link
+                    onClick={() => handleTabClick("services")}
+                    href={"#about"}
+                    className={`${
+                      pathname.includes("#about")
+                        ? "text-forestgreen dark:text-secondary font-semibold"
+                        : "text-foreground dark:text-background"
+                    } text-xs dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+                  >
+                    Services
+                  </Link>
+                  <Link
+                    onClick={() => handleTabClick("international")}
+                    href={"#about"}
+                    className={`${
+                      pathname.includes("#about")
+                        ? "text-forestgreen dark:text-secondary font-semibold"
+                        : "text-foreground dark:text-background"
+                    } text-xs dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+                  >
+                    International
+                  </Link>
+                </div>
+              </div>
               <Link
                 href={"#rates"}
                 className={`${
                   pathname.includes("#rates")
                     ? "text-forestgreen dark:text-secondary font-semibold"
                     : "text-foreground dark:text-background"
-                } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+                } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
               >
                 Rates
               </Link>
@@ -69,7 +101,7 @@ function Navbar() {
                   pathname.includes("#testimonials")
                     ? "text-forestgreen dark:text-secondary font-semibold"
                     : "text-foreground dark:text-background"
-                } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+                } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
               >
                 Testimonials
               </Link>
@@ -79,9 +111,19 @@ function Navbar() {
                   pathname.includes("#transactions")
                     ? "text-forestgreen dark:text-secondary font-semibold"
                     : "text-foreground dark:text-background"
-                } text-sm dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+                } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
               >
                 Transactions
+              </Link>
+              <Link
+                href={"#gallery"}
+                className={`${
+                  pathname.includes("#gallery")
+                    ? "text-forestgreen dark:text-secondary font-semibold"
+                    : "text-foreground dark:text-background"
+                } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+              >
+                Gallery
               </Link>
             </div>
             <div className="flex items-center gap-3 ml-auto">
@@ -173,19 +215,42 @@ function Navbar() {
             pathname === "/"
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-2xl dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
         >
           Home
         </Link>
         <Link
+          onClick={() => handleTabClick("about")}
           href={"#about"}
           className={`${
             pathname.includes("#about")
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-2xl  dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
         >
           About
+        </Link>
+        <Link
+          onClick={() => handleTabClick("services")}
+          href={"#about"}
+          className={`${
+            pathname.includes("#about")
+              ? "text-forestgreen dark:text-secondary font-semibold"
+              : "text-foreground dark:text-background"
+          } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+        >
+          Services
+        </Link>
+        <Link
+          onClick={() => handleTabClick("international")}
+          href={"#about"}
+          className={`${
+            pathname.includes("#about")
+              ? "text-forestgreen dark:text-secondary font-semibold"
+              : "text-foreground dark:text-background"
+          } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+        >
+          International
         </Link>
         <Link
           href={"#rates"}
@@ -193,7 +258,7 @@ function Navbar() {
             pathname.includes("#rates")
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-2xl  dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
         >
           Rates
         </Link>
@@ -203,7 +268,7 @@ function Navbar() {
             pathname.includes("#testimonials")
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-2xl  dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
         >
           Testimonials
         </Link>
@@ -213,9 +278,19 @@ function Navbar() {
             pathname.includes("#transactions")
               ? "text-forestgreen dark:text-secondary font-semibold"
               : "text-foreground dark:text-background"
-          } text-2xl  dark:hover:text-secondary hover:text-primary duration-200 ease-in-out`}
+          } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
         >
           Transactions
+        </Link>
+        <Link
+          href={"#gallery"}
+          className={`${
+            pathname.includes("#gallery")
+              ? "text-forestgreen dark:text-secondary font-semibold"
+              : "text-foreground dark:text-background"
+          } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+        >
+          Gallery
         </Link>
       </div>
     </>

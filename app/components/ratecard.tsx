@@ -109,7 +109,7 @@ export default function CryptoCard({
         className="w-full text-background bg-forestgreen hover:opacity-90 duration-200 ease-in-out mt-4 
                   rounded-lg dark:bg-forestgreen-dark px-2 py-2 flex items-center justify-center gap-2 rounded-lg0"
       >
-        <span className="text-sm">Trade Now</span>{" "}
+        <span className="text-sm hidden sm:block">Trade Now</span>{" "}
         <Image
           alt="whatsapp icon"
           src={"/icons/whatsapp-icon.svg"}

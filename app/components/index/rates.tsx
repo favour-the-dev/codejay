@@ -21,7 +21,7 @@ function Rates() {
     return (
       <section
         id="rates"
-        className="w-full h-[250px] bg-background-gray dark:bg-foreground"
+        className="w-full h-[250px] bg-background-gray dark:bg-foreground py-10"
       >
         <motion.h2
           initial={{ opacity: 0 }}
@@ -48,7 +48,7 @@ function Rates() {
     <>
       <section
         id="rates"
-        className="relative w-full h-full py-5 bg-background-gray dark:bg-foreground overflow-x-hidden"
+        className="relative w-full h-full py-10 bg-background-gray dark:bg-foreground overflow-x-hidden"
       >
         <div className="max-container flex flex-col gap-8">
           <motion.div

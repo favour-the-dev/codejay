@@ -11,6 +11,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     type: "starter",
   });
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("about");
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
 
   // data state
   const TopCoins = ["BTC", "ETH", "XRP", "USDT", "BNB", "SOL", "USDC", "DOGE"];
@@ -62,6 +66,8 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         topCoins,
         rate,
         refreshRates,
+        activeTab,
+        handleTabClick,
       }}
     >
       {children}

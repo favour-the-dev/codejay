@@ -16,13 +16,13 @@ import ImageSliderPro from "../imageSliderPro";
 import { MdCurrencyExchange } from "react-icons/md";
 
 function About() {
-  const { setIsContactModalOpen, setIsMobileNavOpen, rate } = useContext(
-    AppContext
-  ) as any;
-  const [activeTab, setActiveTab] = useState("about");
-  const handleTabClick = (tab: string) => {
-    setActiveTab(tab);
-  };
+  const {
+    setIsContactModalOpen,
+    setIsMobileNavOpen,
+    rate,
+    activeTab,
+    handleTabClick,
+  } = useContext(AppContext) as any;
   const images = [
     {
       src: "/images/general.jpeg",
@@ -104,7 +104,7 @@ function About() {
     <>
       <section
         id="about"
-        className="relative w-full h-full py-5 bg-background-gray dark:bg-foreground overflow-x-hidden"
+        className="relative w-full h-full py-10 bg-background-gray dark:bg-foreground overflow-x-hidden"
       >
         <div className="max-container flex flex-col gap-5">
           {/* tabs */}
@@ -139,7 +139,7 @@ function About() {
           </div>
           {/* about jay */}
           {activeTab === "about" && (
-            <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-0 overflow-hidden">
+            <div className="w-full flex flex-col lg:flex-row md:items-center md:justify-between gap-5 lg:gap-0 overflow-hidden">
               <h2 className="font-Inter font-bold text-2xl md:text-3xl md:hidden text-center">
                 Who is Code
                 <span className="text-forestgreen dark:text-secondary">
@@ -152,7 +152,7 @@ function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-5 order-2 md:order-1"
+                className="w-full lg:w-1/2 flex flex-col items-center md:items-start gap-5 order-2 lg:order-1"
               >
                 <h2 className="font-Inter font-bold text-2xl md:text-3xl hidden md:block">
                   Who is Code
@@ -206,7 +206,7 @@ function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="w-full md:w-1/2 flex items-center justify-center order-1 md:order-2"
+                className="w-full lg:w-1/2 flex items-center justify-center order-1 lg:order-2"
               >
                 <div className="w-fit border-2 border-dashed p-2 rounded-xl border-forestgreen dark:border-secondary">
                   <Image
@@ -214,7 +214,7 @@ function About() {
                     src={"/images/joshua.jpeg"}
                     width={400}
                     height={400}
-                    className="w-[400px] h-[250px] md:h-[300px] object-cover rounded-xl"
+                    className="w-[350px] h-[250px] md:w-[500px] lg:w-[400px] lg:h-[300px] object-cover rounded-xl"
                   />
                 </div>
               </motion.div>
@@ -240,7 +240,7 @@ function About() {
               >
                 <ImageSlider images={images} />
               </motion.div>
-              <div className="w-full flex flex-col md:flex-row items-center gap-5 order-2">
+              <div className="w-full flex flex-col lg:flex-row items-center gap-5 order-2">
                 {/*  */}
                 <ServiceCard
                   icon={<IoMdSwap />}

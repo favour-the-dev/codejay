@@ -23,27 +23,31 @@ function ContactModal() {
     {
       type: "exchange",
       message:
-        "Hello, i want to exchange my fiat or crpto. can you provide me with more information.",
+        "Hello, i want to exchange my fiat or crpto. can you provide me with more information?",
     },
     {
       type: "payments",
       message:
-        "Hello, i want to use yout international payment methods. can you provide me with more information.",
+        "Hello, i want to use yout international payment methods. can you provide me with more information?",
     },
     {
       type: "foreign",
       message:
-        "Hello, i want to exchange my Naira to foreign currencies. can you provide me with more information.",
+        "Hello, i want to exchange my Naira to foreign currencies. can you provide me with more information?",
     },
     {
       type: "memecoin/giftcard",
       message:
-        "Hello, I want to buy/sell memecoins/giftcards, can you provide me with more info",
+        "Hello, I want to buy/sell memecoins/giftcards, can you provide me with more information?",
     },
     {
       type: "mentorship",
       message:
-        "Hello, I want to be a part of your degen trading mentorship programme. can you provide me with more information",
+        "Hello, I want to be a part of your degen trading mentorship programme. can you provide me with more information?",
+    },
+    {
+      type: "testimonial",
+      message: `Hello, I want to use your ${isContactModalOpen.service} service. Can you please provide me with more information?`,
     },
   ];
   const [mounted, setMounted] = useState(false);
@@ -56,7 +60,11 @@ function ContactModal() {
         tm.type === isContactModalOpen.type && setMessage(tm.message ?? "");
       });
     }
-  }, [isContactModalOpen.type, isContactModalOpen.coin]);
+  }, [
+    isContactModalOpen.type,
+    isContactModalOpen.coin,
+    isContactModalOpen.service,
+  ]);
 
   if (!mounted) return null;
 

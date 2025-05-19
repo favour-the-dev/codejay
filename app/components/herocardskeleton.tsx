@@ -22,7 +22,7 @@ export default function HeroCardSkeleton({
       <div className="absolute -bottom-2 -right-2 w-full h-full rounded-xl bg-green-700 opacity-30" />
 
       {/* main skeleton card */}
-      <div className="relative w-full h-full bg-gradient-to-br from-green-900/60 to-green-800/60 rounded-xl p-4 md:p-6 shadow-lg overflow-hidden border border-green-700/30">
+      <div className="relative w-full h-full flex flex-col justify-between bg-gradient-to-br from-green-900/60 to-green-800/60 rounded-xl p-4 md:p-6 shadow-lg overflow-hidden border border-green-700/30">
         {/* radial pattern */}
         <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_#ffffff_0%,_transparent_70%)]" />
 

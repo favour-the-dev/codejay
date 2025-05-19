@@ -72,12 +72,12 @@ function Hero() {
           />
         </div>
         {/* hero text */}
-        <div className="max-container text-background relative z-10 flex flex-col md:flex-row items-center justify-center md:justify-between">
+        <div className="max-container text-background relative z-10 flex flex-col lg:flex-row items-center justify-center lg:justify-between">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-5 md:max-w-2/3 lg:max-w-[50%] py-5"
+            className="flex flex-col gap-5 lg:max-w-[50%] py-5"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl text-center md:text-start font-bold text-background">
               Trade with Code<span className="text-secondary">Jay</span> Your
@@ -150,10 +150,10 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="md:max-w-2/3 lg:max-w-[50%] py-4"
+            className="lg:max-w-[50%] py-4"
           >
             {topCoins.length === 0 ? (
-              <HeroCardSkeleton className="w-[300px] sm:w-[350px] lg:w-[400px] h-[200px] lg:h-[300px]" />
+              <HeroCardSkeleton className="w-[300px] sm:w-[350px] md:w-[500px] lg:w-[400px] h-[200px] lg:h-[300px]" />
             ) : currentCoin ? (
               <AnimatePresence mode="wait">
                 <motion.div
@@ -169,13 +169,13 @@ function Hero() {
                     price={currentCoin.price}
                     iconUrl={currentCoin.iconUrl}
                     color={currentCoin.color}
-                    customStyle="w-[300px] sm:w-[350px] lg:w-[400px] h-[200px] lg:h-[300px]"
+                    customStyle="w-[300px] sm:w-[350px] md:w-[500px] lg:w-[400px] h-[200px] lg:h-[300px]"
                     rate={rate}
                   />
                 </motion.div>
               </AnimatePresence>
             ) : (
-              <HeroCardSkeleton className="w-[300px] sm:w-[350px] lg:w-[400px] h-[200px] lg:h-[300px]" />
+              <HeroCardSkeleton className="w-[300px] sm:w-[350px] md:w-[500px] lg:w-[400px] h-[200px] lg:h-[300px]" />
             )}
           </motion.div>
         </div>

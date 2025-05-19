@@ -4,7 +4,8 @@ import { StaticImageData } from 'next/image';
 export interface ContactModalState {
   state: boolean;
   type: string;
-  coin?: string
+  coin?: string;
+  service?: string;
 }
 
 export interface rateType{
@@ -16,13 +17,15 @@ export interface rateType{
 export interface AppContextTypes {
   isContactModalOpen: ContactModalState;
   setIsContactModalOpen: Dispatch<
-    SetStateAction<{ state: boolean; type: string; coin?: string }>
+    SetStateAction<{ state: boolean; type: string; coin?: string; service?: string; }>
   >;
   isMobileNavOpen: boolean;
   setIsMobileNavOpen: (isOpen: boolean) => void;
   topCoins: (CryptoCoin | undefined)[];
   rate: rateType;
   refreshRates: () => Promise<void>;
+  activeTab: string;
+  handleTabClick: (tab: string) => void;
 }
 
 export interface ServiceCardProps {
@@ -41,7 +44,9 @@ export interface Imagestypes{
   rate?: string | undefined
 }
 export interface ImageSliderprops{
-  images: Imagestypes[]
+  stringImage?: boolean
+  stringImages?: string[]
+  images?: Imagestypes[]
   isHidden?: boolean
   grid?: string
   fiat?: boolean
