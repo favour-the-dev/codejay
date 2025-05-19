@@ -9,6 +9,7 @@ export default function ImageSliderPro({
   isHidden,
   grid,
 }: ImageSliderprops) {
+  if (!images) return;
   const [active, setActive] = useState(0);
   const timer = useRef<NodeJS.Timeout | null>(null);
   const visible = useRef(true);
