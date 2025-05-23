@@ -58,13 +58,13 @@ function Rates() {
             viewport={{ once: true }}
             className="flex flex-col gap-3"
           >
-            <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
+            <h2 className="font-Inter font-bold text-3xl text-center">
               Top Traded{" "}
               <span className="text-forestgreen dark:text-secondary">
                 Coins
               </span>
             </h2>
-            <p className="text-sm md:text-lg mx-auto text-gray-500 dark:text-gray-400 md:max-w-[70%] text-center">
+            <p className="text-base lg:text-lg mx-auto text-gray-500 dark:text-gray-400 md:max-w-[70%] text-center">
               Explore our most‑traded coins here; we handle many more. Message
               us for the complete portfolio, tailored insights, and real‑time
               opportunities to diversify and grow your crypto holdings.

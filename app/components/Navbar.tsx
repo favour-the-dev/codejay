@@ -60,7 +60,7 @@ function Navbar() {
                 >
                   About <MdOutlineKeyboardArrowDown className="text-xl" />
                 </Link>
-                <div className="duration-200 ease-in-out scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 absolute bottom-[-125%] left-0 flex flex-col gap-2 border border-gray-500/50 dark:border-non bg-background shadow-lg dark:bg-forestgreen-dark rounded-lg p-3">
+                <div className="duration-200 ease-in-out scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 absolute bottom-[-125%] left-0 flex flex-col gap-2 border border-gray-500/50 dark:border-none bg-background shadow-lg dark:bg-forestgreen-dark rounded-lg p-3">
                   <Link
                     onClick={() => handleTabClick("services")}
                     href={"#about"}
@@ -68,7 +68,7 @@ function Navbar() {
                       pathname.includes("#about")
                         ? "text-forestgreen dark:text-secondary font-semibold"
                         : "text-foreground dark:text-background"
-                    } text-xs dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+                    } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
                   >
                     Services
                   </Link>
@@ -79,7 +79,7 @@ function Navbar() {
                       pathname.includes("#about")
                         ? "text-forestgreen dark:text-secondary font-semibold"
                         : "text-foreground dark:text-background"
-                    } text-xs dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+                    } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
                   >
                     International
                   </Link>
@@ -124,6 +124,26 @@ function Navbar() {
                 } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
               >
                 Gallery
+              </Link>
+              <Link
+                href={"#faq"}
+                className={`${
+                  pathname.includes("#faq")
+                    ? "text-forestgreen dark:text-secondary font-semibold"
+                    : "text-foreground dark:text-background"
+                } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+              >
+                FAQs
+              </Link>
+              <Link
+                href={"#news"}
+                className={`${
+                  pathname.includes("#news")
+                    ? "text-forestgreen dark:text-secondary font-semibold"
+                    : "text-foreground dark:text-background"
+                } text-sm dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+              >
+                News
               </Link>
             </div>
             <div className="flex items-center gap-3 ml-auto">
@@ -291,6 +311,26 @@ function Navbar() {
           } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
         >
           Gallery
+        </Link>
+        <Link
+          href={"#faq"}
+          className={`${
+            pathname.includes("#faq")
+              ? "text-forestgreen dark:text-secondary font-semibold"
+              : "text-foreground dark:text-background"
+          } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+        >
+          FAQs
+        </Link>
+        <Link
+          href={"#news"}
+          className={`${
+            pathname.includes("#news")
+              ? "text-forestgreen dark:text-secondary font-semibold"
+              : "text-foreground dark:text-background"
+          } text-2xl  dark:hover:text-secondary hover:text-forestgreen duration-200 ease-in-out`}
+        >
+          News
         </Link>
       </div>
     </>

@@ -1,22 +1,70 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  animate as frameAnimate,
+  AnimatePresence,
+} from "framer-motion";
 import { AppContext } from "@/app/context/context";
 import { useContext, useState, useEffect, useRef } from "react";
-import { FaChartLine } from "react-icons/fa6";
-import { ContactModalState } from "@/app/types/types";
+import { FaChartLine } from "react-icons/fa";
+import { ContactModalState, CryptoCoin } from "@/app/types/types";
 import HeroCardSkeleton from "../herocardskeleton";
 import HeroCard from "../herocard";
 import { Persisted } from "@/app/types/types";
-import { CryptoCoin } from "@/app/types/types";
 
 function Hero() {
   const { setIsContactModalOpen, setIsMobileNavOpen, topCoins, rate } =
     useContext(AppContext) as any;
   const [index, setIndex] = useState(0);
-  const [currentCoin, setCurrentCoin] = useState<CryptoCoin | null>(null);
+  const [currentCoin, setCurrentCoin] = useState<CryptoCoin | undefined>(
+    undefined
+  );
   const initialRender = useRef(true);
+
+  const CounterAnimation = ({
+    value,
+    suffix = "",
+    duration = 2,
+  }: {
+    value: string;
+    suffix?: string;
+    duration?: number;
+  }) => {
+    const [count, setCount] = useState(0);
+    const hasAnimated = useRef(false);
+    const finalValue = parseFloat(value.replace(/[^0-9.]/g, ""));
+
+    useEffect(() => {
+      if (hasAnimated.current) {
+        setCount(finalValue);
+        return;
+      }
+
+      const controls = frameAnimate(0, finalValue, {
+        duration: duration,
+        onUpdate: (value: number) => setCount(value),
+        ease: "easeOut",
+        onComplete: () => {
+          setCount(finalValue);
+        },
+      });
+
+      hasAnimated.current = true;
+      return () => {
+        controls.stop();
+        setCount(finalValue);
+      };
+    }, [finalValue, duration]);
+
+    return (
+      <motion.h4 className="text-secondary font-bold text-2xl md:text-3xl">
+        {count.toLocaleString("en-US", { maximumFractionDigits: 0 })}
+        {suffix}
+      </motion.h4>
+    );
+  };
 
   // Set the initial current coin when topCoins are loaded
   useEffect(() => {
@@ -55,6 +103,21 @@ function Hero() {
     // Only update currentCoin when topCoins and index are valid
     if (topCoins[i]) {
       setCurrentCoin(topCoins[i]);
+    }
+  }, [topCoins]);
+
+  useEffect(() => {
+    if (topCoins.length > 0) {
+      setCurrentCoin(topCoins[0]);
+      const interval = setInterval(() => {
+        setCurrentCoin((prev) => {
+          const currentIndex = topCoins.findIndex(
+            (coin: CryptoCoin) => coin === prev
+          );
+          return topCoins[(currentIndex + 1) % topCoins.length];
+        });
+      }, 10000);
+      return () => clearInterval(interval);
     }
   }, [topCoins]);
 
@@ -121,25 +184,22 @@ function Hero() {
 
             <div className="flex flex-col sm:flex-row items-center sm:justify-between">
               <div className="flex flex-col items-center md:items-start">
-                <h4 className="text-secondary font-bold text-2xl md:text-3xl">
-                  ₦100M+
-                </h4>
+                <span className="text-secondary flex items-center gap-1">
+                  <span className="font-bold text-2xl md:text-3xl"> ₦ </span>
+                  <CounterAnimation value="100" suffix="M+" />
+                </span>
                 <span className="text-sm text-gray-200 dark:text-gray-400">
                   Monthly Volume
                 </span>
               </div>
               <div className="flex flex-col items-center md:items-start">
-                <h4 className="text-secondary font-bold text-2xl md:text-3xl">
-                  2K+
-                </h4>
+                <CounterAnimation value="2000" suffix="+" />
                 <span className="text-sm text-gray-200 dark:text-gray-400">
                   Transactions
                 </span>
               </div>
               <div className="flex flex-col items-center md:items-start">
-                <h4 className="text-secondary font-bold text-2xl md:text-3xl">
-                  100%
-                </h4>
+                <CounterAnimation value="100" suffix="%" />
                 <span className="text-sm text-gray-200 dark:text-gray-400">
                   Secure Trades
                 </span>

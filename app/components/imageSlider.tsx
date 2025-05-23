@@ -22,7 +22,6 @@ export default function ImageSlider({
   stringImages,
   images,
   isHidden,
-  grid = "3",
   fiat,
   rates,
 }: ImageSliderprops) {
@@ -127,7 +126,7 @@ export default function ImageSlider({
         <div
           className={`${
             isHidden ? "hidden" : "hidden lg:grid"
-          } grid-cols-${grid} gap-6 transition-all duration-500`}
+          } grid-cols-3 gap-6 transition-all duration-500`}
         >
           {items.map((img, i) => {
             const isActive = i === activeIndex;

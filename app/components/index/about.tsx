@@ -140,7 +140,7 @@ function About() {
           {/* about jay */}
           {activeTab === "about" && (
             <div className="w-full flex flex-col lg:flex-row md:items-center md:justify-between gap-5 lg:gap-0 overflow-hidden">
-              <h2 className="font-Inter font-bold text-2xl md:text-3xl md:hidden text-center">
+              <h2 className="font-Inter font-bold text-3xl md:hidden text-center">
                 Who is Code
                 <span className="text-forestgreen dark:text-secondary">
                   Jay
@@ -154,7 +154,7 @@ function About() {
                 viewport={{ once: true }}
                 className="w-full lg:w-1/2 flex flex-col items-center md:items-start gap-5 order-2 lg:order-1"
               >
-                <h2 className="font-Inter font-bold text-2xl md:text-3xl hidden md:block">
+                <h2 className="font-Inter font-bold text-3xl hidden md:block">
                   Who is Code
                   <span className="text-forestgreen dark:text-secondary">
                     Jay
@@ -224,7 +224,7 @@ function About() {
           {/* services */}
           {activeTab === "services" && (
             <div className="w-full flex flex-col md:items-center md:justify-between gap-5 overflow-hidden">
-              <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
+              <h2 className="font-Inter font-bold text-3xl text-center">
                 What Services Do We{" "}
                 <span className="text-forestgreen dark:text-secondary">
                   Offer
@@ -268,7 +268,7 @@ function About() {
           )}
           {activeTab === "international" && (
             <div className="w-full flex flex-col md:items-center md:justify-between gap-5 overflow-hidden">
-              <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
+              <h2 className="font-Inter font-bold text-3xl text-center">
                 International{" "}
                 <span className="text-forestgreen dark:text-secondary">
                   Services

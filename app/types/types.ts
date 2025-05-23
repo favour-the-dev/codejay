@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from 'react';
-import { StaticImageData } from 'next/image';
+import { Dispatch, SetStateAction } from "react";
+import { StaticImageData } from "next/image";
 
 export interface ContactModalState {
   state: boolean;
@@ -8,16 +8,21 @@ export interface ContactModalState {
   service?: string;
 }
 
-export interface rateType{
-  usd: string | undefined
-  eur: string | undefined
-  gbp: string | undefined
+export interface rateType {
+  usd: string | undefined;
+  eur: string | undefined;
+  gbp: string | undefined;
 }
 
 export interface AppContextTypes {
   isContactModalOpen: ContactModalState;
   setIsContactModalOpen: Dispatch<
-    SetStateAction<{ state: boolean; type: string; coin?: string; service?: string; }>
+    SetStateAction<{
+      state: boolean;
+      type: string;
+      coin?: string;
+      service?: string;
+    }>
   >;
   isMobileNavOpen: boolean;
   setIsMobileNavOpen: (isOpen: boolean) => void;
@@ -26,6 +31,7 @@ export interface AppContextTypes {
   refreshRates: () => Promise<void>;
   activeTab: string;
   handleTabClick: (tab: string) => void;
+  isLoading: boolean;
 }
 
 export interface ServiceCardProps {
@@ -35,21 +41,21 @@ export interface ServiceCardProps {
   className?: string;
   hoverEffect?: boolean;
   type?: string;
-  animationDelay?: number
+  animationDelay?: number;
 }
 
-export interface Imagestypes{
-  src: string | StaticImageData
-  label: string
-  rate?: string | undefined
+export interface Imagestypes {
+  src: string | StaticImageData;
+  label: string;
+  rate?: string | undefined;
 }
-export interface ImageSliderprops{
-  stringImage?: boolean
-  stringImages?: string[]
-  images?: Imagestypes[]
-  isHidden?: boolean
-  grid?: string
-  fiat?: boolean
+export interface ImageSliderprops {
+  stringImage?: boolean;
+  stringImages?: string[];
+  images?: Imagestypes[];
+  isHidden?: boolean;
+  grid?: string;
+  fiat?: boolean;
   rates?: rateType;
 }
 export interface CryptoCoin {
@@ -83,7 +89,7 @@ export interface CoinSummary {
   marketCap: string;
   volume24h: string;
   color?: string;
-  inNaira?: boolean
+  inNaira?: boolean;
 }
 
 export interface HeroCardProps {
@@ -100,3 +106,11 @@ export type Persisted = {
   i: number;
   expires: number;
 };
+
+export interface Article {
+  date: string;
+  description: string;
+  thumbnail: string;
+  title: string;
+  url: string;
+}

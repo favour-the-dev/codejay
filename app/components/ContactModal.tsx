@@ -6,6 +6,7 @@ import { IoIosClose } from "react-icons/io";
 import { FaShieldAlt } from "react-icons/fa";
 import Link from "next/link";
 import { ContactModalState } from "../types/types";
+import { motion } from "framer-motion";
 function ContactModal() {
   const { isContactModalOpen, setIsContactModalOpen } = useContext(
     AppContext
@@ -72,7 +73,13 @@ function ContactModal() {
     <>
       {isContactModalOpen.state && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-5 md:p-0">
-          <div className="bg-background dark:bg-darkShade p-4 rounded-lg shadow-lg flex flex-col gap-3 w-full md:max-w-[350px]">
+          <motion.div
+            initial={{ opacity: 0, scaleY: 0.9 }}
+            whileInView={{ opacity: 1, scaleY: 1 }}
+            exit={{ opacity: 0, scaleY: 0.9 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="bg-background dark:bg-darkShade p-4 rounded-lg shadow-lg flex flex-col gap-3 w-full md:max-w-[350px]"
+          >
             <div className="flex items-center justify-between">
               <h2 className="text-sm font-bold">Contact Us</h2>
               <IoIosClose
@@ -134,7 +141,7 @@ function ContactModal() {
                 height={20}
               />
             </Link>
-          </div>
+          </motion.div>
         </div>
       )}
     </>

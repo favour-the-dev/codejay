@@ -39,7 +39,10 @@ function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <Link
-                href={"/"}
+                href={
+                  "https://x.com/joshua_ugoji?t=pTfPzGsh_0WHHSKaDTQCzQ&s=08"
+                }
+                target="_blank"
                 className="border border-gray-300 dark:border-gray-600 p-3 text-foreground hover:border-forestgreen dark:hover:border-secondary hover:text-forestgreen 
                 dark:hover:text-secondary duration-200 ease-in-out dark:text-gray-400 rounded-lg text-xl"
               >
@@ -53,14 +56,16 @@ function Footer() {
                 <FaInstagram />
               </Link>
               <Link
-                href={"/"}
+                href={"https://t.me/Codejay779"}
+                target="_blank"
                 className="border border-gray-300 dark:border-gray-600 p-3 text-foreground hover:border-forestgreen dark:hover:border-secondary hover:text-forestgreen 
                 dark:hover:text-secondary duration-200 ease-in-out dark:text-gray-400 rounded-lg text-xl"
               >
                 <FaTelegramPlane />
               </Link>
               <Link
-                href={"/"}
+                href={"https://wa.me/+2349066710779"}
+                target="_blank"
                 className="border border-gray-300 dark:border-gray-600 p-3 text-foreground hover:border-forestgreen dark:hover:border-secondary hover:text-forestgreen 
                 dark:hover:text-secondary duration-200 ease-in-out dark:text-gray-400 rounded-lg text-xl"
               >
@@ -88,19 +93,19 @@ function Footer() {
                 Home
               </Link>
               <Link
-                href={"/"}
+                href={"#about"}
                 className="text-sm text-gray-500 dark:text-gray-400 hover:text-forestgreen dark:hover:text-secondary duration-200 ease-in-out"
               >
                 About
               </Link>
               <Link
-                href={"/"}
+                href={"#rates"}
                 className="text-sm text-gray-500 dark:text-gray-400 hover:text-forestgreen dark:hover:text-secondary duration-200 ease-in-out"
               >
                 Rates
               </Link>
               <Link
-                href={"/"}
+                href={"#testimonials"}
                 className="text-sm text-gray-500 dark:text-gray-400 hover:text-forestgreen dark:hover:text-secondary duration-200 ease-in-out"
               >
                 Testimonials
@@ -127,7 +132,7 @@ function Footer() {
                 Help Center
               </Link>
               <Link
-                href={"/"}
+                href={"#faq"}
                 className="text-sm text-gray-500 dark:text-gray-400 hover:text-forestgreen dark:hover:text-secondary duration-200 ease-in-out"
               >
                 FAQs

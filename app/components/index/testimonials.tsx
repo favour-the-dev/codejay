@@ -63,13 +63,13 @@ function Testimonials() {
             viewport={{ once: true }}
             className="flex flex-col gap-3"
           >
-            <h2 className="font-Inter font-bold text-2xl md:text-3xl text-center">
+            <h2 className="font-Inter font-bold text-3xl text-center">
               Client{" "}
               <span className="text-forestgreen dark:text-secondary">
                 Testimonials
               </span>
             </h2>
-            <p className="text-sm md:text-lg mx-auto text-gray-500 dark:text-gray-400 md:max-w-[70%] text-center">
+            <p className="text-base md:text-lg mx-auto text-gray-500 dark:text-gray-400 md:max-w-[70%] text-center">
               <span className="font-semibold">
                 Real Conversations, Real Results —
               </span>{" "}
@@ -89,7 +89,7 @@ function Testimonials() {
               className="w-fit mx-auto text-background bg-forestgreen hover:opacity-90 duration-200 ease-in-out mt-4 
                               rounded-lg dark:bg-forestgreen-dark px-4 py-3 md:px-6 flex items-center justify-center gap-2 rounded-lg0"
             >
-              <span className="text-sm">Get Started</span>{" "}
+              <span className="text-base">Get Started</span>{" "}
               <Image
                 alt="whatsapp icon"
                 src={"/icons/whatsapp-icon.svg"}
@@ -104,7 +104,7 @@ function Testimonials() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             viewport={{ once: true }}
-            className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-5 mt-4"
+            className="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 md:gap-5 mt-4"
           >
             <span
               onClick={() => handleChangeTab("crypto")}
@@ -112,7 +112,7 @@ function Testimonials() {
                 activeTab === "crypto"
                   ? "bg-forestgreen-dark dark:bg-secondary text-gray-100 rounded-md"
                   : "text-gray-500 dark:text-gray-400"
-              } flex items-center gap-1 text-xs md:text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
+              } flex items-center gap-1 text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
             >
               Crypto <span className="hidden md:block">Exchange</span>
             </span>
@@ -122,7 +122,7 @@ function Testimonials() {
                 activeTab === "currency"
                   ? "bg-forestgreen-dark dark:bg-secondary text-gray-100 rounded-md"
                   : "text-gray-500 dark:text-gray-400"
-              } flex items-center gap-1 text-xs md:text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
+              } flex items-center gap-1 text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
             >
               Currency <span className="hidden md:block">Exchange</span>
             </span>
@@ -132,7 +132,7 @@ function Testimonials() {
                 activeTab === "trading"
                   ? "bg-forestgreen-dark dark:bg-secondary text-gray-100 rounded-md"
                   : "text-gray-500 dark:text-gray-400"
-              } flex items-center gap-1 text-xs md:text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
+              } flex items-center gap-1 text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
             >
               Degen <span className="hidden md:block">Trading</span>
             </span>
@@ -142,7 +142,7 @@ function Testimonials() {
                 activeTab === "payments"
                   ? "bg-forestgreen-dark dark:bg-secondary text-gray-100 rounded-md"
                   : "text-gray-500 dark:text-gray-400"
-              } flex items-center gap-1 text-xs md:text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
+              } flex items-center gap-1 text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
             >
               International <span className="hidden md:block">Payments</span>
             </span>
@@ -152,7 +152,7 @@ function Testimonials() {
                 activeTab === "giftcards"
                   ? "bg-forestgreen-dark dark:bg-secondary text-gray-100 rounded-md"
                   : "text-gray-500 dark:text-gray-400"
-              } flex items-center gap-1 text-xs md:text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
+              } flex items-center gap-1 text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
             >
               GiftCards
             </span>
@@ -162,7 +162,7 @@ function Testimonials() {
                 activeTab === "airdrops"
                   ? "bg-forestgreen-dark dark:bg-secondary text-gray-100 rounded-md"
                   : "text-gray-500 dark:text-gray-400"
-              } flex items-center gap-1 text-xs md:text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
+              } flex items-center gap-1 text-sm duration-300 ease-in-out px-4 py-2 cursor-pointer`}
             >
               Airdrops <span className="hidden md:block">Exchange</span>
             </span>

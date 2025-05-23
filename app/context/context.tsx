@@ -2,8 +2,26 @@
 import { createContext, useState, useEffect } from "react";
 import { AppContextTypes, CryptoCoin } from "@/app/types/types";
 import RatesService from "@/services/Rates";
+import Image from "next/image";
 
 export const AppContext = createContext<AppContextTypes | undefined>(undefined);
+
+// Loading component
+const LoadingScreen = () => (
+  <div className="fixed inset-0 bg-primary z-[1000] flex items-center justify-center">
+    <div className="flex flex-col items-center gap-4">
+      <div className="relative w-32 h-32 animate-pulse">
+        <Image
+          src="/images/codejaylogo.jpeg"
+          alt="CodeJay Logo"
+          fill
+          className="object-cover rounded-full"
+        />
+      </div>
+    </div>
+  </div>
+);
+
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   // ui state
   const [isContactModalOpen, setIsContactModalOpen] = useState({
@@ -12,6 +30,8 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   });
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("about");
+  const [isLoading, setIsLoading] = useState(true);
+
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
@@ -28,6 +48,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   // helper function to fetch apis
   const refreshRates = async () => {
     try {
+      setIsLoading(true);
       const data = await RatesService.getRates();
       const xrate = await RatesService.getExchangeRate();
       const usdRate = xrate?.conversion_rates.USD;
@@ -49,6 +70,8 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
       setTopCoins(mainCoins);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,6 +79,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     refreshRates();
   }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -68,8 +92,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         refreshRates,
         activeTab,
         handleTabClick,
+        isLoading,
       }}
     >
+      {isLoading && <LoadingScreen />}
       {children}
     </AppContext.Provider>
   );
